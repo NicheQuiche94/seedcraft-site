@@ -1,8 +1,10 @@
 import type { PitchConfig } from '@/types/pitch'
+import { smokelessMockups } from '@/components/pitch/mockups/smokeless'
 
 export const smokeless: PitchConfig = {
   slug: 'smokeless',
   envKey: 'PITCH_PASSWORD_SMOKELESS',
+  mockupComponents: smokelessMockups,
   theme: {
     accent: '#00d47b',
     accentDim: '#00a35f',
@@ -137,39 +139,18 @@ export const smokeless: PitchConfig = {
       insightAttr: '— Seedcraft strategic reframe',
     },
 
-    appPreview: {
-      label: 'The Product',
-      title: 'Habit interruption meets ',
-      titleAccent: 'gamified reduction',
-      bodyTop:
-        'The haptic press remains the hero. But now every press is a small victory in a longer journey. The app tracks your reduction over weeks and months — not binary days since quitting.',
-      hapticLeaf: '🌿',
-      hapticMessage: 'I don\'t smoke\nanymore',
-      hapticHold: 'Hold to confirm',
-      statsTop: { label: 'Time on plan', value: '5 Days 12 Hours' },
-      statsGrid: [
-        { label: 'Avoided', value: '110' },
-        { label: 'Saved', value: '€75' },
-      ],
-      slipLabel: 'I slipped up ↻',
-      featurePoints: [
-        {
-          title: 'The Haptic',
-          body: 'Press and hold for 3 seconds. The phone vibrates. The ring fills. The craving passes. Zero cognitive load.',
-        },
-        {
-          title: 'Reduction Plans',
-          body: '6-month structured programs. Week by week, the app helps you reduce your target — no guilt, just progress.',
-        },
-        {
-          title: 'Shame-Free Tracking',
-          body: '"I slipped up" button treats lapses as data, not failure. Every day is a new chance. No streak resets.',
-        },
-        {
-          title: 'Every Press Is a Win',
-          body: 'Gamified progress tracking. Each resisted craving builds your score. Daily, weekly, monthly streaks without binary breakage.',
-        },
-      ],
+    mockups: {
+        label: 'The Product',
+        title: 'Habit interruption meets ',
+        titleAccent: 'gamified reduction',
+        handwrittenNote: undefined,
+        items: [
+            {
+            label: 'The Haptic',
+            sublabel: 'Press. Vibrate. Craving passes. Zero cognitive load.',
+            component: 'haptic',
+            },
+        ],
     },
 
     branding: {

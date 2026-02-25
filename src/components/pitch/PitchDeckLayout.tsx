@@ -11,13 +11,19 @@ import Problem from './sections/Problem'
 import OriginalIdea from './sections/OriginalIdea'
 import Shift from './sections/Shift'
 import WhyShift from './sections/WhyShift'
-import AppPreview from './sections/AppPreview'
+// import AppPreview from './sections/AppPreview'
 import Branding from './sections/Branding'
 import GoToMarket from './sections/GoToMarket'
 import Revenue from './sections/Revenue'
 import Process from './sections/Process'
 import Deal from './sections/Deal'
 import Closing from './sections/Closing'
+import Pillars from './sections/Pillars'
+import Mockups from './sections/Mockups'
+import Modes from './sections/Modes'
+import Attribution from './sections/Attribution'
+import BuildSummary from './sections/BuildSummary'
+import Role from './sections/Role'
 
 interface Props {
   config: PitchConfig
@@ -76,12 +82,17 @@ export default function PitchDeckLayout({ config }: Props) {
         {content.originalIdea && <><Divider /><OriginalIdea content={content.originalIdea} theme={theme} /></>}
         {content.shift     && <><Divider /><Shift     content={content.shift}       theme={theme} /></>}
         {content.whyShift  && <><Divider /><WhyShift  content={content.whyShift}    theme={theme} /></>}
-        {content.appPreview && <><Divider /><AppPreview content={content.appPreview} theme={theme} /></>}
+        {content.pillars     && <><Divider /><Pillars     content={content.pillars}     theme={theme} /></>}
+        {content.mockups     && <><Divider /><Mockups      content={content.mockups}     theme={theme} mockupComponents={config.mockupComponents ?? {}} /></>}
+        {content.modes       && <><Divider /><Modes        content={content.modes}       theme={theme} /></>}
+        {content.attribution && <><Divider /><Attribution  content={content.attribution} theme={theme} /></>}
+        {content.buildSummary && <><Divider /><BuildSummary content={content.buildSummary} theme={theme} /></>}
         {content.branding  && <><Divider /><Branding  content={content.branding}    theme={theme} /></>}
         {content.goToMarket && <><Divider /><GoToMarket content={content.goToMarket} theme={theme} /></>}
         {content.revenue   && <><Divider /><Revenue   content={content.revenue}     theme={theme} /></>}
         {content.process   && <><Divider /><Process   content={content.process}     theme={theme} /></>}
         {content.deal      && <><Divider /><Deal      content={content.deal}        theme={theme} /></>}
+        {content.role && <><Divider /><Role content={content.role} theme={theme} /></>}
 
         <Divider />
         <Closing content={content.closing} theme={theme} />

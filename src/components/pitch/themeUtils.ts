@@ -20,6 +20,10 @@ export function buildCssVars(theme: PitchTheme): CSSProperties {
     '--p-border': theme.border,
     '--p-font-serif': `'${theme.fontSerif}', Georgia, serif`,
     '--p-font-sans': `'${theme.fontSans}', -apple-system, sans-serif`,
+    ...(theme.secondaryAccent      && { '--p-secondary':       theme.secondaryAccent }),
+    ...(theme.secondaryAccentLight && { '--p-secondary-light': theme.secondaryAccentLight }),
+    ...(theme.bgWarm               && { '--p-bg-warm':         theme.bgWarm }),
+    ...(theme.fontHandwriting      && { '--p-font-hw':         `'${theme.fontHandwriting}', cursive` }),
   } as CSSProperties
 }
 
@@ -28,11 +32,23 @@ export function buildCssVars(theme: PitchTheme): CSSProperties {
  * Handles both serif and sans-serif with optional weight/style descriptors.
  */
 export function buildFontUrl(theme: PitchTheme): string {
+  const parts: string[] = []
+
   const serif = theme.fontSerifWeights
     ? `family=${encodeURIComponent(theme.fontSerif)}:${theme.fontSerifWeights}`
     : `family=${encodeURIComponent(theme.fontSerif)}`
   const sans = theme.fontSansWeights
     ? `family=${encodeURIComponent(theme.fontSans)}:${theme.fontSansWeights}`
     : `family=${encodeURIComponent(theme.fontSans)}`
-  return `https://fonts.googleapis.com/css2?${serif}&${sans}&display=swap`
+
+  parts.push(serif, sans)
+
+  if (theme.fontHandwriting) {
+    const hw = theme.fontHandwritingWeights
+      ? `family=${encodeURIComponent(theme.fontHandwriting)}:${theme.fontHandwritingWeights}`
+      : `family=${encodeURIComponent(theme.fontHandwriting)}`
+    parts.push(hw)
+  }
+
+  return `https://fonts.googleapis.com/css2?${parts.join('&')}&display=swap`
 }

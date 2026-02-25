@@ -2,7 +2,7 @@
  * Shared primitives used across pitch section components.
  * Import from here rather than duplicating in each section.
  */
-import type { PitchTheme } from '@/types/pitch'
+import type { PitchTheme, HandwrittenCallout } from '@/types/pitch'
 
 // ─── Layout wrappers ───────────────────────────────────────────────
 
@@ -111,6 +111,28 @@ export function ValueTag({ children, theme }: { children: React.ReactNode; theme
     <span className="inline-block mt-3 px-3 py-1 rounded-full text-xs"
       style={{ background: theme.accentGlow, border: `1px solid ${theme.accentGlowStrong}`, color: theme.accent }}>
       {children}
+    </span>
+  )
+}
+
+// ─── Handwritten callout ───────────────────────────────────────────
+
+export function HandwrittenNote({
+  callout, theme, className = '',
+}: { callout: HandwrittenCallout; theme: PitchTheme; className?: string }) {
+  const font = (theme as PitchTheme & { fontHandwriting?: string }).fontHandwriting
+  return (
+    <span
+      className={`inline-block ${className}`}
+      style={{
+        fontFamily: font ? `'${font}', cursive` : `'Caveat', cursive`,
+        fontSize: '1.2rem',
+        color: callout.color ?? theme.accent,
+        transform: `rotate(${callout.rotation ?? 0}deg)`,
+        display: 'inline-block',
+      }}
+    >
+      {callout.text}
     </span>
   )
 }

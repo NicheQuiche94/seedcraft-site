@@ -26,6 +26,20 @@ export default function Deal({ content, theme }: Props) {
             <div className="text-5xl font-normal" style={{ fontFamily: 'var(--p-font-serif)', color: theme.accent }}>{content.totalValue}</div>
             <div className="text-sm mt-2" style={{ color: theme.textMuted }}>{content.totalNote}</div>
           </div>
+          {content.ipStructure && (
+            <div className="mt-8 pt-8 text-left" style={{ borderTop: `1px solid ${theme.border}` }}>
+                <h4 className="text-sm font-bold uppercase tracking-wider mb-4"
+                style={{ color: theme.textMuted }}>
+                {content.ipStructure.title}
+                </h4>
+                {content.ipStructure.body.split('\n\n').map((para, i) => (
+                <p key={i} className="text-sm leading-relaxed mb-3"
+                    style={{ color: theme.textMuted }}>
+                    {para}
+                </p>
+                ))}
+            </div>
+            )}
         </div>
       </Reveal>
     </Section>
